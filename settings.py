@@ -4,8 +4,8 @@ class Settings():
     def __init__(self):
         """Initialize the game's settings."""
         # Screen Settings
-        self.scrren_width = 800
-        self.screen_height = 600
+        self.scrren_width = 1200
+        self.screen_height = 800
         self.bg_color = (230, 230, 230)
 
         # Ship speed settings.
