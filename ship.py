@@ -9,9 +9,9 @@ class Ship():
         self.screen = screen
         self.ai_settings = ai_settings
         # Load the image and get it's rect.
-        image_path = '/home/user1/pythonTuto/py_crash_course/alian_invasion/'
-        image_path += 'images/ship.bmp'
-        self.image = pygame.image.load(image_path)
+        ship_image_path = '/home/user1/pythonTuto/py_crash_course/alian_invasion/'
+        ship_image_path += 'images/ship.bmp'
+        self.image = pygame.image.load(ship_image_path)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
