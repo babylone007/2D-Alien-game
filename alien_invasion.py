@@ -4,6 +4,7 @@ from settings import Settings
 from ship import Ship
 from alien import Alien
 from pygame.sprite import Group
+from game_stats import GameStats
 
 
 def run_game():
@@ -15,6 +16,8 @@ def run_game():
         (ai_settings.scrren_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
+    # Creat an instance to store game statistics.
+    stats = GameStats(ai_settings)
     # Make a Ship
     ship = Ship(ai_settings, screen)
     # Make a group to store bullets in.
@@ -29,12 +32,15 @@ def run_game():
     while True:
         # Watch for keybord and mouse events.
         gf.check_events(ai_settings, screen, ship, bullets)
-        # Update ship position
-        ship.update()
-        # Update bullets position and remove old once.
-        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        # Update alien position.
-        gf.update_aliens(ai_settings, aliens)
+
+        if stats.game_active:
+            # Update ship position
+            ship.update()
+            # Update bullets position and remove old once.
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            # Update alien position.
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            
         # Update screen
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
