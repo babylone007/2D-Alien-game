@@ -72,7 +72,7 @@ def update_bullets(bullets):
 def check_fleet_edges(ai_settings, aliens):
     """Test if any alien in the group have reached the edge."""
     for alien in aliens.sprites():
-        if alien.check_edges:
+        if alien.check_edges():
             change_fleet_direction(ai_settings, aliens)
             break
 

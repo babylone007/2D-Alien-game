@@ -33,7 +33,7 @@ class Alien(Sprite):
             return True
         elif self.rect.left <= 0:
             return True
-            
+
     def update(self):
         """Move the alient to the right."""
         self.x += (self.ai_settings.alien_speed_factor *
