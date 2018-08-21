@@ -33,7 +33,8 @@ def fire_bullets(ai_settings, screen, ship, bullets):
     bullets.add(new_bullet)
 
 
-def check_events(ai_settings, screen, stats, play_button, ship, bullets):
+def check_events(ai_settings, screen, stats, play_button, ship, aliens,
+                 bullets):
     """Respond to keypresses and mous events."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,13 +45,26 @@ def check_events(ai_settings, screen, stats, play_button, ship, bullets):
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats, play_button, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, play_button, ship,
+                              aliens, bullets, mouse_x, mouse_y)
 
 
-def check_play_button(stats, play_button, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, play_button, ship, aliens,
+                      bullets, mouse_x, mouse_y):
     """Starts a new game when the player cliks Play."""
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
+    botton_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    if botton_clicked and not stats.game_active:
+        # Hide the mouse curser
+        pygame.mouse.set_visible(False)
+        # Rest the gale statistics
+        stats.rest_stats()
         stats.game_active = True
+        # Empty the list of aliens and bullets.
+        aliens.empty()
+        bullets.empty()
+        # Create a new fleet and center ship.
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
 
 def update_screen(ai_settings, screen, stats, ship, aliens, bullets,
@@ -126,6 +140,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
 
 
 def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
