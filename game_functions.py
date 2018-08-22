@@ -54,9 +54,11 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens,
     """Starts a new game when the player cliks Play."""
     botton_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if botton_clicked and not stats.game_active:
+        # Reset the game settings
+        ai_settings.initialize_dynamic_settings()
         # Hide the mouse curser
         pygame.mouse.set_visible(False)
-        # Rest the gale statistics
+        # Rest the game statistics
         stats.rest_stats()
         stats.game_active = True
         # Empty the list of aliens and bullets.
