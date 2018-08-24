@@ -22,6 +22,8 @@ def run_game():
     play_button = Button(ai_settings, screen, "Play")
     # Creat an instance to store game statistics and create a scoreboard.
     stats = GameStats(ai_settings)
+    # print("GameStats Initialization")
+    print(stats.score)
     sb = Scoreboard(ai_settings, screen, stats)
     # Make a Ship
     ship = Ship(ai_settings, screen)
