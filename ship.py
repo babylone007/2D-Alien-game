@@ -1,16 +1,18 @@
 import pygame
+from pygame.sprite import Sprite
 
 
-class Ship():
+class Ship(Sprite):
     """A class to modilyze a ship."""
 
     def __init__(self, ai_settings, screen):
         """Initialize the ship and set it's starting position."""
+        super(Ship, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
         # Load the image and get it's rect.
-        ship_image_path = '/home/user1/pythonTuto/py_crash_course/alian_invasion/'
-        ship_image_path += 'images/ship.bmp'
+        ship_image_path = '/home/user1/pythonTuto/py_crash_course/'
+        ship_image_path += 'alian_invasion/images/ship.bmp'
         self.image = pygame.image.load(ship_image_path)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
