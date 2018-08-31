@@ -11,8 +11,7 @@ class Ship(Sprite):
         self.screen = screen
         self.ai_settings = ai_settings
         # Load the image and get it's rect.
-        ship_image_path = '/home/user1/pythonTuto/py_crash_course/'
-        ship_image_path += 'alian_invasion/images/ship.bmp'
+        ship_image_path = 'images/ship.bmp'
         self.image = pygame.image.load(ship_image_path)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
